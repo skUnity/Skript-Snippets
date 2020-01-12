@@ -1,0 +1,74 @@
+#some math functions
+# most functions are self explanitory
+
+function factorial(n: integer) :: integer:
+	set {_r} to 1
+	loop {_n} times:
+		set {_r} to {_r} * loop-value
+	return floor({_r})
+
+function quadratic(a: number=0, b: number=0, c: number=0) :: numbers:
+	set {_d} to sqrt({_b}*{_b} - 4*{_a}*{_c})
+	if {_d} > 0:
+		add ((-1*{_b}+{_d})/(2*{_a})) to {_r::*}
+		add ((-1*{_b}-{_d})/(2*{_a})) to {_r::*}
+	else if {_d} = 0:
+		add ((-1*{_b})/(2*{_a})) to {_r::*}
+	return {_r::*}
+
+function binaryStringToInt(s: string) :: integer:
+	set {_r} to 0
+	loop length of {_s} times:
+		set {_bit} to substring of {_s} from loop-value to loop-value
+		if {_bit} = "0":
+			set {_r} to {_r}*2
+		else:
+			set {_r} to {_r}*2+1
+	return floor({_r})
+
+function intToBinaryString(n: integer) :: string:
+	set {_r} to ""
+	loop floor(log({_n},2)+1) times:
+		if mod({_n},2) = 1:
+			set {_r} to "1%{_r}%"
+		else:
+			set {_r} to "0%{_r}%"
+		set {_n} to floor({_n}/2)
+	return {_r}
+
+function intToHexString(n: integer, upper: boolean = false) :: string:
+	if {_upper} = false:
+		set {_hex} to "123456789abcdef0"
+	else:
+		set {_hex} to "123456789ABCDEF0"
+	set {_a} to floor(log({_n},16)+1)
+	set {_a} to 1 if {_a} < 0
+	loop {_a} times:
+		set {_d} to mod({_n},16)
+		if {_d} = 0:
+			set {_d} to 16
+		set {_r} to join substring of {_hex} from {_d} to {_d}, and {_r}
+		set {_n} to floor({_n}/16)
+	return {_r}
+
+function hexStringToInt(s: string) :: integer:
+	set {_s} to {_s} in lower case
+	if substring of {_s} from 1 to 1 = "-":
+		set {_s} to substring of {_s} from 2 to length of {_s}
+		set {_minus} to -1
+	loop {_s} split at "":
+		set {_return} to (({_return} ? 0)*16 + mod((index of loop-value in "123456789abcdef0"), 16)) if loop-value != ""
+	return floor(({_minus} ? 1)*{_return})
+
+function average(n: numbers) :: number:
+	set {_s} to sum({_n::*})
+	return {_s}/(size of {_n::*})
+
+function dispersion(n: numbers) :: number:
+	set {_avg} to average({_n::*})
+	loop {_n::*}:
+		add ({_avg}-(loop-value))^2 to {_total}
+	return {_total}/(size of {_n::*})
+
+function standardDeviation(n: numbers) :: number:
+	return sqrt(dispersion({_n::*}))
