@@ -1,0 +1,45 @@
+discord command play <text>:
+    prefixes: /
+    executable in: guild
+    trigger:
+        join voice channel of event-member
+        play arg-1
+        reply with "▶ Now playing %arg 1%"
+
+discord command pause:
+    prefixes: /
+    executable in: guild
+    trigger:
+        pause the track event-bot is playing
+        reply with "⏸ Paused!"
+
+discord command resume:
+    prefixes: /
+    executable in: guild
+    trigger:
+        resume the track event-bot is playing
+        reply with "▶ Resumed!"
+
+discord command stop:
+    prefixes: /
+    executable in: guild
+    trigger:
+        stop the track event-bot is playing
+        make event-bot leave voice
+        reply with "⏹ Stopped!"
+
+
+discord command info:
+    prefixes: /
+    executable in: guild
+    trigger:
+        if event-bot is playing:
+            make embed:
+                set title of embed to title with text "▶ %discord name of track event-bot is playing%" and link "%url of track event-bot is playing%"
+                set the colour of the embed to Cyan
+                add field named "Time remaining" with value "%difference between position of track event-bot is playing and duration of track event-bot is playing%" to embed
+                add field named "Author" with value "%authors of track event-bot is playing%" to embed
+        else:
+            make embed:
+                set title of embed to title with text "⏹ No track playing"
+        reply with last created embed
