@@ -1,0 +1,120 @@
+function listPrint(node: string, layer: string="    ", list: string="", currentlayer: string="") :: strings:
+	# Prints a list
+	# example
+	# set {listname::*} to online players
+	# send printList("listname")
+	#
+	# do not touch list and current layer
+	# layer is customizeable and is defaulted to 4 spaces 
+	set {_returnarr::1} to "%{_currentlayer}%[%{_node}%]"
+	set {_t} to 1
+	loop indices of {%{_list}%%{_node}%::*}:
+		add 1 to {_t}
+		set {_returnarr::%{_t}%} to "%{_currentlayer}%%{_layer}%%loop-value%:%{%{_list}%%{_node}%::%loop-value%}%" if {%{_list}%%{_node}%::%loop-value%} is set
+		if {%{_list}%%{_node}%::%loop-value%::*} is set:
+			loop List_Print(loop-value, {_layer}, "%{_list}%%{_node}%::", "%{_currentlayer}%%{_layer}%"):
+				add 1 to {_t}
+				set {_returnarr::%{_t}%} to loop-value-2
+	return {_returnarr::*}
+
+#example response
+# executing 'broadcast listPrint("island")'
+# [island]
+#     [farm]
+#         [admin]
+#             069a79f4-44e9-4726-a5be-fca90e38aaf5:Notch
+#             e2016a5c-f93b-4e60-984d-d794ce853d03:Nopeful
+#         [config]
+#             [permnPMe]
+#                 0:banned
+#                 1:visitor
+#                 2:member
+#                 3:owner
+#                 4:admin
+#             [size]
+#                 1:2
+#                 2:4
+#                 3:6
+#         [id]
+#             [-1]
+#                 [setting]
+#                     [player]
+#                         build:4
+#             [0]
+#                 [setting]
+#                     spawnpoint:x: -12, y: 128, z: -12
+#             [1]
+#                 reference:0
+#             [4]
+#                 level:1
+#                 owner:nopeless
+#                 reference:5
+#                 [statistic]
+#                     createdtime:1/2/20 6:2 PM
+#                     lastactive:1/2/20 6:2 PM
+#             [5]
+#                 [children]
+#                     4:true
+#                     8:true
+#                 level:1
+#                 owner:nopeless
+#                 [setting]
+#                     [permission]
+#                         df5f766e-8d62-42af-9f10-18f95e671067:3
+#                     [player]
+#                         ban:3
+#                         build:2
+#                         chest:2
+#                         dPMageentity:2
+#                         drop:2
+#                         enter:1
+#                         entityinteract:2
+#                         item:2
+#                         kick:2
+#                         nofalldPMage:1
+#                         nofiredPMage:1
+#                         pvp:3
+#                         redstone:2
+#                         trPMple:5
+#                 [statistic]
+#                     createdtime:1/2/20 6:2 PM
+#                     lastactive:1/2/20 6:2 PM
+#             [8]
+#                 level:1
+#                 owner:nopeless
+#                 reference:5
+#                 [statistic]
+#                     createdtime:1/2/20 6:2 PM
+#                     lastactive:1/2/20 6:2 PM
+#             [9]
+#                 level:1
+#                 owner:nopeless
+#                 [setting]
+#                     [permission]
+#                         df5f766e-8d62-42af-9f10-18f95e671067:3
+#                     [player]
+#                         ban:3
+#                         build:2
+#                         chest:2
+#                         dPMageentity:2
+#                         drop:2
+#                         enter:1
+#                         entityinteract:2
+#                         item:2
+#                         kick:2
+#                         nofalldPMage:1
+#                         nofiredPMage:1
+#                         pvp:3
+#                         redstone:2
+#                         trPMple:5
+#                 [statistic]
+#                     createdtime:1/2/20 6:2 PM
+#                     lastactive:1/2/20 6:2 PM
+#         [player]
+#             [df5f766e-8d62-42af-9f10-18f95e671067]
+#                 [island]
+#                     nopeless's farm - 1:5
+#                     nopeless's farm - 2:8
+#                     nopeless's farm - 3:9
+#                     nopeless's farm:4
+#                 maxisland:100
