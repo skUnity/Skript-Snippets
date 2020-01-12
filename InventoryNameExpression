@@ -1,0 +1,40 @@
+# Requires Skript and Skript-mirror.
+# The Inventory name in 1.14+ is broken in Skript due to API changes in Spigot. 
+# This custom expression will return the inventory name of chest, entity or player.
+
+
+expression [vanilla] inv[entory] name of (1¦%player%'[s] [current] [(inv|inventory)]|2¦block at %location%|3¦entity %entity%|4¦block %block%):
+	get:
+		if parse mark is 1:
+			set {_return} to expr-1.getOpenInventory().getTitle()
+		else if parse mark is 2:
+			set {_i} to expr-2
+			set {_return} to {_i}.getBlock().getState().getCustomName()
+		else if parse mark is 3:
+			set {_return} to expr-3.getCustomName()
+		else if parse mark is 4:
+			set {_return} to expr-4.getState().getCustomName()
+		return {_return} ? ""
+		
+# Example Syntax:
+# Vanilla inventory name of %player%'s current inventory 
+# Vanilla inventory name of block at %location%
+# Vanilla inventory name of entity %entity%
+# Vanilla inventory name of block %block%
+		
+# Example commands:
+		
+command /InventoryName:
+	trigger:
+		open chest inventory with 4 rows named "&cTestGUI" to player
+		send "%vanilla inventory name of player's current inventory%"
+		
+		
+command /InventoryName2:
+	trigger:
+		give player chest named "&cInventory"
+		set {_i} to location of targeted block
+		send "%{_i}.getBlock().getState().getCustomName()%"
+		send "%vanilla inv name of block at {_i}%"
+		send "%vanilla inv name of block (player's targeted block)%"
+		
