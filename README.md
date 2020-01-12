@@ -5,10 +5,11 @@ A mixture of snippets for Skript created by the skUnity community. These snippet
 # Submitting snippets
 
 To submit a snippet it must meet the following requirements:
-1. Provide something new to the snippets repo
+1. Provide something new to the snippets' repo
 2. Have a useful filename
 3. Contain plenty of comments detailing what things actually do
 4. Be of a good standard and useful for teaching
+5. Use tabs and 4 for spacing
 	
 You will then need to submit your snippet as a Pull Request. This will allow the snippet to be reviewed by others, changed/improved where needed and ensuring it's a useful snippet.
 	
@@ -18,7 +19,13 @@ All skUnity Staff are contributors to the repo and can approve Pull Requests. Us
 
 # Spotted a problem with snippet?
 
-Simple create an Issue refrencing the snippet and the problems found. Please try and provide a solution to the problem.
+Simple create an Issue referencing the snippet and the problems found. Please try and provide a solution to the problem.
+
+# Terminology side note
+
+Skript refers to the plugin (Skript.jar)
+Script refers to a script file (script.sk)
+Snippet refers to a small piece of Skript code
 
 # Anything else?
 
