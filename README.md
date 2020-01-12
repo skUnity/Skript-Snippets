@@ -5,10 +5,10 @@ A mixture of snippets for Skript created by the skUnity community. These snippet
 # Submitting snippets
 
 To submit a snippet it must meet the following requirements:
-	1. Provide something new to the snippets repo
-	2. Have a useful filename
-	3. Contain plenty of comments detailing what things actually do
-	4. Be of a good standard and useful for teaching
+1. Provide something new to the snippets repo
+2. Have a useful filename
+3. Contain plenty of comments detailing what things actually do
+4. Be of a good standard and useful for teaching
 	
 You will then need to submit your snippet as a Pull Request. This will allow the snippet to be reviewed by others, changed/improved where needed and ensuring it's a useful snippet.
 	
