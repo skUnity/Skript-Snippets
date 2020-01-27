@@ -12,7 +12,7 @@ function listPrint(node: string, layer: string="    ", list: string="", currentl
 		add 1 to {_t}
 		set {_returnarr::%{_t}%} to "%{_currentlayer}%%{_layer}%%loop-value%:%{%{_list}%%{_node}%::%loop-value%}%" if {%{_list}%%{_node}%::%loop-value%} is set
 		if {%{_list}%%{_node}%::%loop-value%::*} is set:
-			loop List_Print(loop-value, {_layer}, "%{_list}%%{_node}%::", "%{_currentlayer}%%{_layer}%"):
+			loop listPrint(loop-value, {_layer}, "%{_list}%%{_node}%::", "%{_currentlayer}%%{_layer}%"):
 				add 1 to {_t}
 				set {_returnarr::%{_t}%} to loop-value-2
 	return {_returnarr::*}
@@ -25,7 +25,7 @@ function listPrint(node: string, layer: string="    ", list: string="", currentl
 #             069a79f4-44e9-4726-a5be-fca90e38aaf5:Notch
 #             e2016a5c-f93b-4e60-984d-d794ce853d03:Nopeful
 #         [config]
-#             [permnPMe]
+#             [permname]
 #                 0:banned
 #                 1:visitor
 #                 2:member
@@ -65,17 +65,17 @@ function listPrint(node: string, layer: string="    ", list: string="", currentl
 #                         ban:3
 #                         build:2
 #                         chest:2
-#                         dPMageentity:2
+#                         damageentity:2
 #                         drop:2
 #                         enter:1
 #                         entityinteract:2
 #                         item:2
 #                         kick:2
-#                         nofalldPMage:1
-#                         nofiredPMage:1
+#                         nofalldamage:1
+#                         nofiredamage:1
 #                         pvp:3
 #                         redstone:2
-#                         trPMple:5
+#                         trample:5
 #                 [statistic]
 #                     createdtime:1/2/20 6:2 PM
 #                     lastactive:1/2/20 6:2 PM
@@ -96,17 +96,17 @@ function listPrint(node: string, layer: string="    ", list: string="", currentl
 #                         ban:3
 #                         build:2
 #                         chest:2
-#                         dPMageentity:2
+#                         damageentity:2
 #                         drop:2
 #                         enter:1
 #                         entityinteract:2
 #                         item:2
 #                         kick:2
-#                         nofalldPMage:1
-#                         nofiredPMage:1
-#                         pvp:3
-#                         redstone:2
-#                         trPMple:5
+#                         nofalldamage:1
+#                         nofiredamage:1
+#                         pvp:3 
+#                         redstone:2 
+#                         trample:5 
 #                 [statistic]
 #                     createdtime:1/2/20 6:2 PM
 #                     lastactive:1/2/20 6:2 PM
