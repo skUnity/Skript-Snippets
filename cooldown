@@ -1,0 +1,30 @@
+options:
+    cooldown: 1 minute
+        
+command /cooldown1:
+    description: This is one way of doing cooldowns with skript!
+    trigger:
+        set {_waited} to difference between {cooldown::%player%::lastusage} and now
+        #This effect sets a local variable to the passed time since the last usage of this command
+        if {_waited} is less than {@cooldown}:
+            send "You didn't wait a minute. Please try again in %difference between {@cooldown} and {_waited}%"
+        #This checks if the waited time is less than a minute. Change the option-variable as you desire to increase/decrease the cooldown
+        else: #if he waited at least a minute
+            send "You have waited enough to use this command again."
+            give player a diamond
+            set {cooldown::%player%::lastusage} to now # resets the cooldown
+
+#The following one only works with at least 2.2dev33
+
+command /cooldown2:
+    cooldown: {@cooldown}
+    cooldown storage: {cooldown2::%player's uuid%} #stores the cooldown in a variable to use in other events/commands
+    cooldown message: You have to wait %remaining time% to use this command again #sends a message if the user uses the command too early
+    cooldown bypass: sk.bypass #Give this permission to eliminate the cooldown for the specific player having this permission
+    trigger:
+        if the player has space for a cake:
+            give a cake to the player
+        else:
+            send "Your inventory is full, buddy."
+            cancel the cooldown 
+            # If a condition doesn't meet, this will not make the cooldown reset. Just because you don't have space for something, doesn't mean you should be punished for trying. The cooldown remains
