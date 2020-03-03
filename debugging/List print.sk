@@ -2,7 +2,7 @@ function listPrint(node: string, layer: string="    ", list: string="", currentl
 	# Prints a list
 	# example
 	# set {listname::*} to online players
-	# send printList("listname")
+	# send listPrint("listname")
 	#
 	# do not touch list and current layer
 	# layer is customizeable and is defaulted to 4 spaces 
